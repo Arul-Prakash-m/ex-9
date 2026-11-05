@@ -1,0 +1,237 @@
+
+<section class="page-hero">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="#!/">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      Contact
+    </div>
+
+    <span class="eyebrow">Let's connect</span>
+    <h1>Have a question? Start here.</h1>
+
+    <p>
+      Use the form below to try the contact experience. This demo
+      validates entries and displays a confirmation message in the browser.
+    </p>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-layout">
+
+    <div>
+      <span class="eyebrow">Get in touch</span>
+      <h2>We'd like to hear from you.</h2>
+
+      <p>
+        Have a question about a program or a suggestion for the portal?
+        Fill out the form and see how validation works.
+      </p>
+
+      <div class="contact-details">
+
+        <div class="contact-detail">
+          <div class="icon-box">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+
+          <div>
+            <strong>Email</strong>
+            <span>hello@veridian.example</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon-box">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+
+          <div>
+            <strong>Response hours</strong>
+            <span>Monday–Friday, 9:00 AM–5:00 PM</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon-box">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+
+          <div>
+            <strong>Academic portal</strong>
+            <span>Student project demonstration</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <form
+      class="contact-form"
+      name="contactForm"
+      ng-submit="contact.submitForm(contactForm)"
+      novalidate>
+
+      <div
+        ng-if="contact.messageSent"
+        class="alert-success"
+        role="status">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <div>
+          <strong>Form submitted successfully!</strong>
+
+          <p>
+            Your entries passed front-end validation. No email was
+            sent because this is a demo website.
+          </p>
+        </div>
+      </div>
+
+      <h2>Send a message</h2>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="fullName">Full name *</label>
+
+          <input
+            id="fullName"
+            name="fullName"
+            class="form-control"
+            type="text"
+            ng-model="contact.formName"
+            required
+            ng-minlength="2"
+            ng-pattern="/^[A-Za-z][A-Za-z .'-]*$/"
+            placeholder="Your name">
+
+          <span
+            class="field-error"
+            ng-if="contactForm.fullName.$touched && contactForm.fullName.$error.required">
+
+            Please enter your name.
+
+          </span>
+
+          <span
+            class="field-error"
+            ng-if="contactForm.fullName.$touched && contactForm.fullName.$error.pattern">
+
+            Use letters and common name punctuation only.
+
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address *</label>
+
+          <input
+            id="email"
+            name="email"
+            class="form-control"
+            type="email"
+            ng-model="contact.formEmail"
+            required
+            placeholder="you@example.com">
+
+          <span
+            class="field-error"
+            ng-if="contactForm.email.$touched && contactForm.email.$invalid">
+
+            Enter a valid email address.
+
+          </span>
+        </div>
+
+        <div class="form-group full">
+          <label for="topic">What is your message about? *</label>
+
+          <select
+            id="topic"
+            name="topic"
+            class="form-control"
+            ng-model="contact.topic"
+            required>
+
+            <option value="">Choose a topic</option>
+            <option>Program information</option>
+            <option>Admissions enquiry</option>
+            <option>Website feedback</option>
+            <option>Other question</option>
+
+          </select>
+
+          <span
+            class="field-error"
+            ng-if="contactForm.topic.$touched && contactForm.topic.$error.required">
+
+            Please select a topic.
+
+          </span>
+        </div>
+
+        <div class="form-group full">
+          <label for="message">Message *</label>
+
+          <textarea
+            id="message"
+            name="message"
+            class="form-control"
+            ng-model="contact.message"
+            required
+            ng-minlength="10"
+            placeholder="Write your message (at least 10 characters)">
+          </textarea>
+
+          <span
+            class="field-error"
+            ng-if="contactForm.message.$touched && contactForm.message.$error.required">
+
+            Please enter a message.
+
+          </span>
+
+          <span
+            class="field-error"
+            ng-if="contactForm.message.$touched && contactForm.message.$error.minlength">
+
+            Your message must be at least 10 characters.
+
+          </span>
+        </div>
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        ng-disabled="contactForm.$invalid">
+
+        Submit message <i class="fa-solid fa-arrow-right"></i>
+
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        type="button"
+        ng-if="contact.messageSent"
+        ng-click="contact.resetForm(contactForm)">
+
+        Send another
+
+      </button>
+
+      <p class="form-note">
+        * Required fields. This form is a front-end demonstration
+        and does not store or transmit your data.
+      </p>
+
+    </form>
+
+  </div>
+</section>

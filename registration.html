@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="registrationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+            margin: auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px #cccccc;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #243c8f;
+        }
+
+        label {
+            display: block;
+            margin-top: 14px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .gender input {
+            width: auto;
+        }
+
+        .gender label {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .error {
+            color: #d00000;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #243c8f;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body ng-controller="RegistrationController">
+
+<div class="container">
+    <h2>User Registration Form</h2>
+
+    <form name="regForm"
+          ng-submit="submitForm()"
+          novalidate>
+
+        <label>Name</label>
+        <input type="text" name="name"
+               ng-model="user.name"
+               ng-pattern="/^[A-Za-z ]+$/"
+               required>
+
+        <div class="error"
+             ng-show="regForm.name.$touched && regForm.name.$error.required">
+            Name is required.
+        </div>
+        <div class="error"
+             ng-show="regForm.name.$touched && regForm.name.$error.pattern">
+            Name cannot contain numbers or special characters.
+        </div>
+
+        <label>Password</label>
+        <input type="password" name="password"
+               ng-model="user.password"
+               ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/"
+               required>
+
+        <div class="error"
+             ng-show="regForm.password.$touched && regForm.password.$error.required">
+            Password is required.
+        </div>
+        <div class="error"
+             ng-show="regForm.password.$touched && regForm.password.$error.pattern">
+            Use 8+ characters with uppercase, lowercase and a number.
+        </div>
+
+        <label>Age</label>
+        <input type="number" name="age"
+               ng-model="user.age"
+               min="18" max="30"
+               required>
+
+        <div class="error"
+             ng-show="regForm.age.$touched && regForm.age.$invalid">
+            Age must be between 18 and 30.
+        </div>
+
+        <label>Mobile Number</label>
+        <input type="text" name="mobile"
+               ng-model="user.mobile"
+               ng-pattern="/^[0-9]{10}$/"
+               required>
+
+        <div class="error"
+             ng-show="regForm.mobile.$touched && regForm.mobile.$invalid">
+            Enter a valid 10-digit mobile number.
+        </div>
+
+        <label>Email</label>
+        <input type="email" name="email"
+               ng-model="user.email"
+               required>
+
+        <div class="error"
+             ng-show="regForm.email.$touched && regForm.email.$invalid">
+            Enter a valid email address.
+        </div>
+
+        <label>Gender</label>
+        <div class="gender">
+            <label>
+                <input type="radio" name="gender"
+                       ng-model="user.gender" value="Male" required>
+                Male
+            </label>
+            <label>
+                <input type="radio" name="gender"
+                       ng-model="user.gender" value="Female" required>
+                Female
+            </label>
+        </div>
+
+        <div class="error"
+             ng-show="regForm.gender.$touched && regForm.gender.$error.required">
+            Please select your gender.
+        </div>
+
+        <label>State</label>
+        <select name="state" ng-model="user.state" required>
+            <option value="">Select State</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+        </select>
+
+        <div class="error"
+             ng-show="regForm.state.$touched && regForm.state.$error.required">
+            Please select your state.
+        </div>
+
+        <button type="submit" ng-disabled="regForm.$invalid">
+            Submit
+        </button>
+
+        <p class="success" ng-show="submitted">
+            Registration successful!
+        </p>
+
+    </form>
+</div>
+
+<script>
+    var app = angular.module("registrationApp", []);
+
+    app.controller("RegistrationController", function($scope) {
+        $scope.user = {};
+        $scope.submitted = false;
+
+        $scope.submitForm = function() {
+            if ($scope.regForm.$valid) {
+                $scope.submitted = true;
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

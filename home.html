@@ -1,0 +1,133 @@
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-copy">
+      <span class="eyebrow">Your next chapter starts here</span>
+
+      <h1>
+        Make room for what you can
+        <span style="color: var(--teal)">become.</span>
+      </h1>
+
+      <p>
+        Veridian is your starting point for exploring academic pathways,
+        discovering new interests, and shaping a future that feels like your own.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#!/programs">
+          Explore programs <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a class="btn btn-secondary" href="#!/about">
+          Discover Veridian
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-panel">
+
+        <div class="panel-top">
+          <span class="panel-label">A place to begin</span>
+          <span class="panel-icon">
+            <i class="fa-solid fa-compass"></i>
+          </span>
+        </div>
+
+        <h2>Curiosity can take you further.</h2>
+
+        <p>
+          Explore ideas. Build skills. Find the path that inspires you.
+        </p>
+
+        <div class="panel-bottom">
+          <span class="panel-pill">
+            <i class="fa-solid fa-book-open"></i> Learn
+          </span>
+
+          <span class="panel-pill">
+            <i class="fa-solid fa-lightbulb"></i> Discover
+          </span>
+
+          <span class="panel-pill">
+            <i class="fa-solid fa-arrow-trend-up"></i> Grow
+          </span>
+        </div>
+      </div>
+
+      <div class="floating-note">
+        <span class="note-icon">
+          <i class="fa-solid fa-check"></i>
+        </span>
+
+        <span>
+          <strong>Your journey, your pace</strong>
+          <small>Start with what interests you.</small>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">The Veridian approach</span>
+      <h2>More than a list of courses.</h2>
+
+      <p>
+        A useful academic journey begins with clear information and the
+        freedom to explore. Use Veridian to discover options and learn
+        what matters to you.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card" ng-repeat="feature in home.features">
+
+        <div class="icon-box">
+          <i class="fa-solid" ng-class="feature.icon"></i>
+        </div>
+
+        <h3>{{feature.title}}</h3>
+        <p>{{feature.text}}</p>
+
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="container stats-grid">
+
+    <div class="stat" ng-repeat="stat in home.stats">
+      <strong>{{stat.value}}</strong>
+      <span>{{stat.label}}</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="cta-band">
+      <div>
+        <h2>Ready to explore what comes next?</h2>
+        <p>
+          Browse the learning pathways and find a subject worth discovering.
+        </p>
+      </div>
+
+      <a class="btn btn-primary" href="#!/programs">
+        View programs <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>

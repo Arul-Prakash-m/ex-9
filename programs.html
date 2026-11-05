@@ -1,0 +1,107 @@
+
+<section class="page-hero">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="#!/">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      Programs
+    </div>
+
+    <span class="eyebrow">Find your direction</span>
+    <h1>Explore learning pathways.</h1>
+
+    <p>
+      Browse these sample academic pathways. Search by subject or
+      use category filters to narrow your options.
+    </p>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="program-tools">
+
+      <label class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="search"
+          ng-model="programs.searchText"
+          placeholder="Search programs or subjects..."
+          aria-label="Search programs">
+      </label>
+
+      <div class="filter-list" aria-label="Filter programs by category">
+
+        <button
+          class="filter-btn"
+          type="button"
+          ng-repeat="category in programs.categories"
+          ng-class="{'active': programs.activeCategory === category}"
+          ng-click="programs.setCategory(category)">
+
+          {{category}}
+
+        </button>
+
+      </div>
+    </div>
+
+    <div class="program-grid">
+
+      <article
+        class="program-card"
+        ng-repeat="item in programs.visiblePrograms() track by item.title">
+
+        <div class="icon-box">
+          <i class="fa-solid" ng-class="item.icon"></i>
+        </div>
+
+        <span class="program-category">{{item.category}}</span>
+
+        <h3>{{item.title}}</h3>
+
+        <p>{{item.description}}</p>
+
+        <div class="program-meta">
+          <i class="fa-regular fa-clock"></i>
+          Sample duration: {{item.duration}}
+        </div>
+
+      </article>
+
+      <div
+        class="empty-state"
+        ng-if="programs.visiblePrograms().length === 0">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <h3>No matching programs</h3>
+
+        <p>
+          Try another search term or select a different category.
+        </p>
+
+        <button
+          class="btn btn-secondary"
+          type="button"
+          ng-click="programs.searchText = ''; programs.setCategory('All')">
+
+          Clear filters
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <p class="form-note">
+      Note: Program names and durations are illustrative sample content
+      for this student project.
+    </p>
+
+  </div>
+</section>
